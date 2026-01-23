@@ -1,0 +1,37 @@
+[
+    {
+        "name": "Vespers",
+        "day": "Wednesday",
+        "time": "6:00 PM",
+        "order": 1,
+        "id": 1
+    },
+    {
+        "id": 2,
+        "name": "Moleiben",
+        "day": "Thursday",
+        "time": "11:00 AM",
+        "order": 2
+    },
+    {
+        "id": 3,
+        "name": "Divine Liturgy",
+        "day": "Saturday",
+        "time": "8:00 AM",
+        "order": 3
+    },
+    {
+        "id": 4,
+        "name": "Vespers",
+        "day": "Saturday",
+        "time": "5:00 PM",
+        "order": 4
+    },
+    {
+        "id": 5,
+        "name": "Divine Liturgy",
+        "day": "Sunday",
+        "time": "10:00 AM",
+        "order": 5
+    }
+]

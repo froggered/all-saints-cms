@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "title": "Feast of Theophany",
+    "slug": "feast-of-theophany",
+    "date": "2026-01-19",
+    "time": "Divine Liturgy - 10:00 AM",
+    "description": "Special blessing of waters following the Divine Liturgy. All are welcome to participate.",
+    "featured": true,
+    "category": "feast"
+  },
+  {
+    "id": 2,
+    "title": "Presentation of Christ",
+    "slug": "presentation-of-christ",
+    "date": "2026-02-02",
+    "time": "Divine Liturgy - 10:00 AM",
+    "description": "Celebration of the Meeting of our Lord in the Temple.",
+    "featured": true,
+    "category": "feast"
+  }
+]

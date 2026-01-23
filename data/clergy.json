@@ -1,0 +1,29 @@
+[
+    {
+        "id": 1,
+        "title": "Archimandrite Philip Hall",
+        "role": "Parish Priest & Protosyngellos",
+        "photo": "\/images\/fr-philip-hall.jpg",
+        "order": 1,
+        "active": true,
+        "bio": "Archimandrite Philip was ordained priest in 1995 and appointed Archimandrite in 2015. He has served as Protosyngellos (Spiritual Advisor to the Archbishop) for the Antiochian Archdiocese since 2023, overseeing the selection, initial training and monitoring of new deacons and priests.\n\nBorn in Kenya in 1959, he grew up across Africa and the Middle East before being educated in England. After 22 years as a teacher in Zambia, Birmingham, and North Lincolnshire, he was ordained in the Church of England and served as Bishop of Exeter's Chaplain and Director of Ordinands.\n\nHe left the Anglicans in 1989 and was received into the Orthodox Church in 1990. He was ordained by Metropolitan Gabriel and has served in Louth, Lincoln, Worcester, and was for four years in charge of the monastery in Gatten.\n\nFr Philip also serves as Advisor to His Majesty's Prison and Probation Service on Orthodox Christian matters and Managing Chaplain at HMP Norwich."
+    },
+    {
+        "id": 2,
+        "title": "Fr Deacon Panagiotis Franklin",
+        "role": "Deacon",
+        "photo": "\/images\/dn-panagiotis-franklin.jpg",
+        "order": 2,
+        "active": true,
+        "bio": "Raised Pentecostal, Dn. Panagiotis was received into the Orthodox Church aged 21 after deciding that church history and dogma indicated that he should be Orthodox. He came to find out that Jesus, a more appropriate form of worship, and a full spiritual life would have been even better reasons.\n\nAfter graduating from an Evangelical theological school with a BA in Theology in 2022, he joined the Brotherhood of St Peter and St Paul. After two months Archimandrite Philip sent him to the St John of Damascus Institute of Theology in Balamand, Lebanon, where he studied Orthodox theology and stayed in Antiochian monasteries for ten months.\n\nOn 23rd February 2025 he was ordained deacon by the hand of Metropolitan Silouan. He now serves at the Brotherhood chapel and with Archimandrite Philip at All Saints of Lincolnshire."
+    },
+    {
+        "title": "Fr George Hackney",
+        "role": "Priest (Retired)",
+        "photo": "\/images\/fr-george-hackney.jpg",
+        "order": 3,
+        "active": true,
+        "bio": "Born in 1941, Fr George served 8 years as a Police Officer before residential training for the Anglican ministry at the former Lincoln Theological College (1965-1968). He took his Masters in Theology at the University of Hull.\r\n\r\nHe resigned from his Anglican parish in 2003 and was received into the Orthodox Church that same year at Holy Transfiguration, Nottingham. He studied Orthodoxy for two years with the Institute for Orthodox Christian Studies in Cambridge before being ordained an Orthodox Priest in 2006 by Metropolitan Kallistos.\r\n\r\nFr George served for 15 years as assistant to Archimandrite Philip at All Saints of Lincolnshire. During this time he also served as Archdiocesan Ecumenical Officer, Chaplain to Morton Hall Prison, and Orthodox Chaplain to the University of Lincoln. After recovering from major heart surgery in 2019, he served as Parish Priest at St Aethelheard's, Louth for three years before retiring in August 2022.\r\n\r\nHe is married and lives in Lincoln with Khourija Annis, his wife.",
+        "id": 3
+    }
+]

@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "title": "Fr. Philip's January Newsletter",
+    "slug": "fr-philips-january-newsletter",
+    "date": "2026-01-15",
+    "featured": true,
+    "author": "Archimandrite Philip",
+    "excerpt": "As we begin a new year, we give thanks for the growth of our community and look forward to welcoming new catechumens...",
+    "body": "As we begin a new year, we give thanks for the growth of our community and look forward to welcoming new catechumens. This month we reflect on the Feast of Theophany and the blessing of waters that sanctifies all creation.\n\nWe are grateful for all who have joined us in worship over the Christmas season and look forward to a blessed year ahead."
+  },
+  {
+    "id": 2,
+    "title": "Lenten Retreat Announced",
+    "slug": "lenten-retreat-announced",
+    "date": "2026-01-10",
+    "featured": false,
+    "author": "Parish Council",
+    "excerpt": "We are pleased to announce our annual Lenten retreat, to be held on the first Saturday of Great Lent...",
+    "body": "We are pleased to announce our annual Lenten retreat, to be held on the first Saturday of Great Lent.\n\nMore details will be announced soon. Please mark your calendars and plan to join us for this time of prayer and reflection."
+  }
+]

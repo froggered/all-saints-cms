@@ -1,0 +1,14 @@
+{
+  "churchName": "All Saints of Lincolnshire",
+  "phone": "07969 332740",
+  "email": "Fr.Philip@gmx.com",
+  "address": {
+    "street": "Saint Matthias Church Centre, Burton Road",
+    "city": "Lincoln",
+    "postcode": "LN1 3TX"
+  },
+  "youtube": "https://www.youtube.com/@ArchimandritePhilip",
+  "facebook": "https://www.facebook.com/Fr.Philip",
+  "twitter": "https://x.com/FrPhilip",
+  "googleMapsUrl": "https://www.google.com/maps/dir/?api=1&destination=Saint+Matthias+Church+Centre+Burton+Road+Lincoln+LN1+3TX"
+}
