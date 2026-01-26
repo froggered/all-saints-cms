@@ -1,0 +1,380 @@
+[
+    {
+        "id": "2025-12-31-vigil",
+        "date": "2025-12-31",
+        "time": "22:00",
+        "name": "All Night Vigil for St Basil",
+        "location_id": "temple",
+        "description": "Ending in Breakfast",
+        "is_special": true
+    },
+    {
+        "id": "2026-01-06-theophany-liturgy",
+        "date": "2026-01-06",
+        "time": "10:00",
+        "name": "Divine Liturgy for Theophany",
+        "location_id": "temple",
+        "description": "Blessing of the Waters",
+        "is_special": true
+    },
+    {
+        "id": "2026-01-06-theophany-brayford",
+        "date": "2026-01-06",
+        "time": "12:30",
+        "name": "Theophany Blessing of the Brayford",
+        "location_id": "other",
+        "description": "\"Spoons\" Lunch afterwards",
+        "is_special": true
+    },
+    {
+        "id": "2026-01-17-festival",
+        "date": "2026-01-17",
+        "time": "17:00",
+        "name": "Mosaic Choir and Parish Festival",
+        "location_id": "temple",
+        "description": "",
+        "is_special": true
+    },
+    {
+        "id": "2026-02-02-meeting",
+        "date": "2026-02-02",
+        "time": "09:00",
+        "name": "Divine Liturgy - Meeting of our Lord",
+        "location_id": "temple",
+        "description": "Presentation",
+        "is_special": true
+    },
+    {
+        "id": "2026-02-15-meatfare",
+        "date": "2026-02-15",
+        "time": "10:00",
+        "name": "Meatfare Sunday",
+        "location_id": "temple",
+        "description": "",
+        "is_special": true
+    },
+    {
+        "id": "2026-02-22-cheesefare",
+        "date": "2026-02-22",
+        "time": "10:00",
+        "name": "Cheesefare: Pancake Party",
+        "location_id": "temple",
+        "description": "Pancake Party in Church",
+        "is_special": true
+    },
+    {
+        "id": "2026-02-22-canon",
+        "date": "2026-02-22",
+        "time": "17:00",
+        "name": "Canon of St Andrew",
+        "location_id": "temple",
+        "description": "Start of Great Lent",
+        "is_special": true
+    },
+    {
+        "id": "2026-02-26-presanctified",
+        "date": "2026-02-26",
+        "time": "18:00",
+        "name": "Presanctified Liturgy",
+        "location_id": "temple",
+        "description": "Repeated weekly during Great Lent",
+        "is_special": true
+    },
+    {
+        "id": "2026-03-01-orthodoxy",
+        "date": "2026-03-01",
+        "time": "10:00",
+        "name": "Sunday of Orthodoxy",
+        "location_id": "temple",
+        "description": "",
+        "is_special": true
+    },
+    {
+        "id": "2026-03-05-presanctified",
+        "date": "2026-03-05",
+        "time": "18:00",
+        "name": "Presanctified Liturgy",
+        "location_id": "temple",
+        "description": "",
+        "is_special": true
+    },
+    {
+        "id": "2026-03-12-presanctified",
+        "date": "2026-03-12",
+        "time": "18:00",
+        "name": "Presanctified Liturgy",
+        "location_id": "temple",
+        "description": "",
+        "is_special": true
+    },
+    {
+        "id": "2026-03-19-presanctified",
+        "date": "2026-03-19",
+        "time": "18:00",
+        "name": "Presanctified Liturgy",
+        "location_id": "temple",
+        "description": "",
+        "is_special": true
+    },
+    {
+        "id": "2026-03-26-presanctified",
+        "date": "2026-03-26",
+        "time": "18:00",
+        "name": "Presanctified Liturgy",
+        "location_id": "temple",
+        "description": "",
+        "is_special": true
+    },
+    {
+        "id": "2026-04-02-presanctified",
+        "date": "2026-04-02",
+        "time": "18:00",
+        "name": "Presanctified Liturgy",
+        "location_id": "temple",
+        "description": "",
+        "is_special": true
+    },
+    {
+        "id": "2026-04-04-converts",
+        "date": "2026-04-04",
+        "time": "14:00",
+        "name": "Reception of Converts",
+        "location_id": "temple",
+        "description": "",
+        "is_special": true
+    },
+    {
+        "id": "2026-04-05-bridegroom",
+        "date": "2026-04-05",
+        "time": "18:00",
+        "name": "Bridegroom Matins",
+        "location_id": "temple",
+        "description": "Beginning of Great Week",
+        "is_special": true
+    },
+    {
+        "id": "2026-04-09-supper-liturgy",
+        "date": "2026-04-09",
+        "time": "10:00",
+        "name": "Lord's Supper Liturgy",
+        "location_id": "temple",
+        "description": "",
+        "is_special": true
+    },
+    {
+        "id": "2026-04-09-unction",
+        "date": "2026-04-09",
+        "time": "18:00",
+        "name": "Unction Service",
+        "location_id": "temple",
+        "description": "",
+        "is_special": true
+    },
+    {
+        "id": "2026-04-10-great-friday",
+        "date": "2026-04-10",
+        "time": "09:00",
+        "name": "Great Friday Services",
+        "location_id": "temple",
+        "description": "Various services throughout the day",
+        "is_special": true
+    },
+    {
+        "id": "2026-04-11-earthquake",
+        "date": "2026-04-11",
+        "time": "10:00",
+        "name": "Earthquake Service",
+        "location_id": "temple",
+        "description": "",
+        "is_special": true
+    },
+    {
+        "id": "2026-04-11-pascal",
+        "date": "2026-04-11",
+        "time": "23:30",
+        "name": "Pascal Services",
+        "location_id": "temple",
+        "description": "Pascha - The Resurrection of Christ",
+        "is_special": true
+    },
+    {
+        "id": "2026-04-12-pascal-lunch",
+        "date": "2026-04-12",
+        "time": "13:00",
+        "name": "Parish Pascal Lunch",
+        "location_id": "temple",
+        "description": "Bring and Share",
+        "is_special": true
+    },
+    {
+        "id": "2026-05-20-ascension",
+        "date": "2026-05-20",
+        "time": "18:00",
+        "name": "Divine Liturgy - Ascension",
+        "location_id": "temple",
+        "description": "Constantine and Helena",
+        "is_special": true
+    },
+    {
+        "id": "2026-05-31-pentecost",
+        "date": "2026-05-31",
+        "time": "10:00",
+        "name": "Pentecost",
+        "location_id": "temple",
+        "description": "Barbeque. Flags go up.",
+        "is_special": true
+    },
+    {
+        "id": "2026-06-07-all-saints",
+        "date": "2026-06-07",
+        "time": "10:00",
+        "name": "All Saints",
+        "location_id": "temple",
+        "description": "Apostles fast starts after Vespers",
+        "is_special": true
+    },
+    {
+        "id": "2026-06-21-lincolnshire",
+        "date": "2026-06-21",
+        "time": "10:00",
+        "name": "All Saints of Lincolnshire",
+        "location_id": "temple",
+        "description": "Procession",
+        "is_special": true
+    },
+    {
+        "id": "2026-06-28-afternoon-tea",
+        "date": "2026-06-28",
+        "time": "16:00",
+        "name": "Afternoon Tea and Vespers",
+        "location_id": "jasmin",
+        "description": "In the Monastery Garden",
+        "is_special": true
+    },
+    {
+        "id": "2026-07-19-seraphim",
+        "date": "2026-07-19",
+        "time": "10:00",
+        "name": "St Seraphim",
+        "location_id": "temple",
+        "description": "Veneration of relic",
+        "is_special": true
+    },
+    {
+        "id": "2026-08-05-transfiguration",
+        "date": "2026-08-05",
+        "time": "18:00",
+        "name": "Divine Liturgy - Transfiguration",
+        "location_id": "temple",
+        "description": "",
+        "is_special": true
+    },
+    {
+        "id": "2026-08-09-matthias",
+        "date": "2026-08-09",
+        "time": "10:00",
+        "name": "St Matthias",
+        "location_id": "temple",
+        "description": "Procession",
+        "is_special": true
+    },
+    {
+        "id": "2026-08-22-pilgrimage",
+        "date": "2026-08-22",
+        "time": "10:00",
+        "name": "Pilgrimage to Egmanton",
+        "location_id": "other",
+        "description": "Shrine of the Mother of God of Egmanton. Bring and share lunch. Entertainment.",
+        "is_special": true
+    },
+    {
+        "id": "2026-08-28-tmes",
+        "date": "2026-08-28",
+        "time": "09:00",
+        "name": "TMES Summer School",
+        "location_id": "other",
+        "description": "In Walsingham (Aug 28-31)",
+        "is_special": true
+    },
+    {
+        "id": "2026-09-08-nativity-theotokos",
+        "date": "2026-09-08",
+        "time": "10:00",
+        "name": "Divine Liturgy - Nativity of the Theotokos",
+        "location_id": "temple",
+        "description": "",
+        "is_special": true
+    },
+    {
+        "id": "2026-09-26-macmillan",
+        "date": "2026-09-26",
+        "time": "10:00",
+        "name": "Macmillan Fund Coffee Morning",
+        "location_id": "temple",
+        "description": "10am - 12pm",
+        "is_special": true
+    },
+    {
+        "id": "2026-09-30-protection",
+        "date": "2026-09-30",
+        "time": "18:00",
+        "name": "Divine Liturgy - Protection of the Mother of God",
+        "location_id": "temple",
+        "description": "",
+        "is_special": true
+    },
+    {
+        "id": "2026-10-09-james",
+        "date": "2026-10-09",
+        "time": "18:00",
+        "name": "Divine Liturgy - St James son of Alpheus",
+        "location_id": "temple",
+        "description": "",
+        "is_special": true
+    },
+    {
+        "id": "2026-10-17-harvest",
+        "date": "2026-10-17",
+        "time": "17:00",
+        "name": "Harvest Festival",
+        "location_id": "temple",
+        "description": "Vespers and Entertainment",
+        "is_special": true
+    },
+    {
+        "id": "2026-11-28-christmas-fair",
+        "date": "2026-11-28",
+        "time": "10:00",
+        "name": "Christmas Fair",
+        "location_id": "temple",
+        "description": "10am - 2pm",
+        "is_special": true
+    },
+    {
+        "id": "2026-12-24-christmas-vespers",
+        "date": "2026-12-24",
+        "time": "16:00",
+        "name": "Christmas Vespers",
+        "location_id": "temple",
+        "description": "",
+        "is_special": true
+    },
+    {
+        "id": "2026-12-25-christmas-liturgy",
+        "date": "2026-12-25",
+        "time": "10:00",
+        "name": "Christmas Liturgy",
+        "location_id": "temple",
+        "description": "Bring and Share Lunch",
+        "is_special": true
+    },
+    {
+        "id": "2026-12-31-vigil",
+        "date": "2026-12-31",
+        "time": "22:00",
+        "name": "All Night Vigil for St Basil",
+        "location_id": "temple",
+        "description": "Ending in Breakfast",
+        "is_special": true
+    }
+]

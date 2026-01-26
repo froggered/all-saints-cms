@@ -40,7 +40,7 @@ $sections = [
 <section id="clergy" class="py-20 bg-off-white">
   <div class="max-w-6xl mx-auto px-6">
     <div class="section-header">
-      <h2>Our Clergy</h2>
+      <h2 class="text-navy">Our Clergy</h2>
       <div class="section-divider"></div>
       <p class="text-slate max-w-xl mx-auto">Meet the priests and deacons serving our parish</p>
     </div>
@@ -132,7 +132,7 @@ document.addEventListener('keydown', (e) => {
         <p class="text-slate text-sm mb-6">
           Catechumenate Classes, E-Quip Sessions, Food Bank, Homeless Outreach, Prison Ministry, University Ministry, and more.
         </p>
-        <a href="/ministries.php" class="btn btn-primary">View All Ministries</a>
+        <a href="/ministries" class="btn btn-primary">View All Ministries</a>
       </div>
 
       <!-- History Excerpt -->
@@ -145,7 +145,7 @@ document.addEventListener('keydown', (e) => {
         <p class="text-white/70 text-sm mb-6">
           Since the start, we have always had catechumens—most of whom have never attended a church before.
         </p>
-        <a href="/history.php" class="btn btn-primary">Read Full History</a>
+        <a href="/history" class="btn btn-primary">Read Full History</a>
       </div>
     </div>
   </div>

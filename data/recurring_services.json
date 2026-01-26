@@ -1,0 +1,178 @@
+[
+  {
+    "id": "mon-matins",
+    "name": "Matins",
+    "day_of_week": 1,
+    "time": "07:30",
+    "location_id": "jasmin",
+    "description": "",
+    "active": true,
+    "order": 1,
+    "type": "service"
+  },
+  {
+    "id": "tue-matins",
+    "name": "Matins",
+    "day_of_week": 2,
+    "time": "06:30",
+    "location_id": "jasmin",
+    "description": "",
+    "active": true,
+    "order": 2,
+    "type": "service"
+  },
+  {
+    "id": "wed-matins",
+    "name": "Matins",
+    "day_of_week": 3,
+    "time": "06:30",
+    "location_id": "jasmin",
+    "description": "",
+    "active": true,
+    "order": 3,
+    "type": "service"
+  },
+  {
+    "id": "thu-matins",
+    "name": "Matins",
+    "day_of_week": 4,
+    "time": "06:30",
+    "location_id": "jasmin",
+    "description": "",
+    "active": true,
+    "order": 4,
+    "type": "service"
+  },
+  {
+    "id": "fri-matins",
+    "name": "Matins",
+    "day_of_week": 5,
+    "time": "06:30",
+    "location_id": "jasmin",
+    "description": "",
+    "active": true,
+    "order": 5,
+    "type": "service"
+  },
+  {
+    "id": "mon-vespers",
+    "name": "Vespers",
+    "day_of_week": 1,
+    "time": "17:00",
+    "location_id": "jasmin",
+    "description": "",
+    "active": true,
+    "order": 6,
+    "type": "service"
+  },
+  {
+    "id": "tue-vespers",
+    "name": "Vespers",
+    "day_of_week": 2,
+    "time": "17:00",
+    "location_id": "jasmin",
+    "description": "",
+    "active": true,
+    "order": 7,
+    "type": "service"
+  },
+  {
+    "id": "thu-vespers",
+    "name": "Vespers",
+    "day_of_week": 4,
+    "time": "17:00",
+    "location_id": "jasmin",
+    "description": "",
+    "active": true,
+    "order": 8,
+    "type": "service"
+  },
+  {
+    "id": "fri-vespers",
+    "name": "Vespers",
+    "day_of_week": 5,
+    "time": "17:00",
+    "location_id": "jasmin",
+    "description": "",
+    "active": true,
+    "order": 9,
+    "type": "service"
+  },
+  {
+    "id": "wed-vespers",
+    "name": "Vespers",
+    "day_of_week": 3,
+    "time": "18:00",
+    "location_id": "temple",
+    "description": "Followed by supper",
+    "active": true,
+    "order": 10,
+    "type": "service"
+  },
+  {
+    "id": "thu-molieben",
+    "name": "Molieben",
+    "day_of_week": 4,
+    "time": "11:00",
+    "location_id": "temple",
+    "description": "Prayers of intercession in St Arsenios' Chapel",
+    "active": true,
+    "order": 11,
+    "type": "service"
+  },
+  {
+    "id": "fri-cleaning",
+    "name": "Church Cleaning",
+    "day_of_week": 5,
+    "time": "08:30",
+    "location_id": "temple",
+    "description": "Volunteers needed and welcome. Until 11am.",
+    "active": true,
+    "order": 12,
+    "type": "misc"
+  },
+  {
+    "id": "fri-catechism",
+    "name": "Catechism Class",
+    "day_of_week": 5,
+    "time": "18:30",
+    "location_id": "temple",
+    "description": "In the Narthex",
+    "active": true,
+    "order": 13,
+    "type": "misc"
+  },
+  {
+    "id": "sat-liturgy",
+    "name": "Divine Liturgy",
+    "day_of_week": 6,
+    "time": "08:00",
+    "location_id": "temple",
+    "description": "Followed by breakfast",
+    "active": true,
+    "order": 14,
+    "type": "service"
+  },
+  {
+    "id": "sat-vespers",
+    "name": "Great Vespers",
+    "day_of_week": 6,
+    "time": "17:00",
+    "location_id": "temple",
+    "description": "Preceded by Confessions",
+    "active": true,
+    "order": 15,
+    "type": "service"
+  },
+  {
+    "id": "sun-liturgy",
+    "name": "Divine Liturgy",
+    "day_of_week": 0,
+    "time": "10:00",
+    "location_id": "temple",
+    "description": "Preceded by Great Matins at 9:20am",
+    "active": true,
+    "order": 16,
+    "type": "service"
+  }
+]

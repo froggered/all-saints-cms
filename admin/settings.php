@@ -19,6 +19,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'postcode' => trim($_POST['postcode'] ?? '')
     ];
     $settings['youtube'] = trim($_POST['youtube'] ?? '');
+    $settings['youtube_channel_id'] = trim($_POST['youtube_channel_id'] ?? '');
+    $settings['youtube_api_key'] = trim($_POST['youtube_api_key'] ?? '');
     $settings['facebook'] = trim($_POST['facebook'] ?? '');
     $settings['googleMapsUrl'] = trim($_POST['googleMapsUrl'] ?? '');
 
@@ -35,6 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Site Settings | All Saints Admin</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -48,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       justify-content: space-between;
       align-items: center;
     }
-    .header h1 {
+    .header-logo {
       font-family: 'Oswald', sans-serif;
       font-size: 1.25rem;
       text-transform: uppercase;
@@ -56,8 +59,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       display: flex;
       align-items: center;
       gap: 10px;
+      color: white;
+      text-decoration: none;
+      background: none;
+      padding: 0;
     }
-    .header h1 span { color: #c9a227; }
+    .header-logo:hover { color: white; background: none; }
+    .header-logo span { color: #c9a227; }
     .header nav { display: flex; gap: 12px; }
     .header a {
       color: white;
@@ -171,7 +179,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
   <header class="header">
-    <h1><span>&#9766;</span> All Saints Admin</h1>
+    <a href="/admin/dashboard.php" class="header-logo"><span>&#9766;</span> All Saints Admin</a>
     <nav>
       <a href="/admin/dashboard.php">Dashboard</a>
       <a href="/" target="_blank">View Site</a>
@@ -227,11 +235,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       </div>
 
       <div class="card">
-        <h2>Social Media & Links</h2>
+        <h2>YouTube & Live Streaming</h2>
         <div class="form-group">
           <label for="youtube">YouTube Channel URL</label>
           <input type="url" id="youtube" name="youtube" value="<?= e($settings['youtube'] ?? '') ?>" placeholder="https://www.youtube.com/@...">
         </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="youtube_channel_id">YouTube Channel ID</label>
+            <input type="text" id="youtube_channel_id" name="youtube_channel_id" value="<?= e($settings['youtube_channel_id'] ?? '') ?>" placeholder="UCxxxxxxxxxx">
+            <p class="hint">Find at youtube.com/account_advanced</p>
+          </div>
+          <div class="form-group">
+            <label for="youtube_api_key">YouTube API Key</label>
+            <input type="text" id="youtube_api_key" name="youtube_api_key" value="<?= e($settings['youtube_api_key'] ?? '') ?>" placeholder="AIzaSy...">
+            <p class="hint">From Google Cloud Console</p>
+          </div>
+        </div>
+        <p class="hint" style="margin-top: 8px;">When both are configured, the site automatically detects when you're live and shows a "Live" button. Otherwise shows "Watch".</p>
+      </div>
+
+      <div class="card">
+        <h2>Other Social Links</h2>
         <div class="form-group">
           <label for="facebook">Facebook Page URL</label>
           <input type="url" id="facebook" name="facebook" value="<?= e($settings['facebook'] ?? '') ?>" placeholder="https://www.facebook.com/...">

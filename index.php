@@ -2,9 +2,11 @@
 require_once 'includes/functions.php';
 
 $page_title = 'Home';
-$services = get_services();
+$recurring = get_recurring_services();
+$locations = get_locations();
 $settings = get_settings();
-$upcoming_events = get_upcoming_events(3);
+// Get special events for homepage (excludes recurring services)
+$upcoming_events = get_upcoming_special_events(3);
 $recent_news = get_recent_news(4);
 $featured_news = array_filter($recent_news, fn($n) => $n['featured'] ?? false);
 $featured_news = !empty($featured_news) ? array_values($featured_news)[0] : ($recent_news[0] ?? null);
@@ -46,7 +48,7 @@ require_once 'includes/header.php';
     </p>
 
     <div class="flex flex-col sm:flex-row gap-4 justify-center">
-      <a href="/visit.php" class="btn btn-primary">Plan Your Visit</a>
+      <a href="/visit" class="btn btn-primary">Plan Your Visit</a>
       <a href="<?= e($settings['youtube'] ?? '#') ?>" class="btn btn-secondary" target="_blank">Watch Live</a>
     </div>
   </div>
@@ -62,7 +64,7 @@ require_once 'includes/header.php';
 <section class="py-20 bg-white">
   <div class="max-w-7xl mx-auto px-6">
     <div class="section-header">
-      <h2>Join Us for Worship</h2>
+      <h2 class="text-navy">Join Us for Worship</h2>
       <div class="section-divider"></div>
       <p class="text-slate max-w-xl mx-auto">
         Experience the beauty of Orthodox Christian worship. All are welcome.
@@ -74,16 +76,35 @@ require_once 'includes/header.php';
       <div class="bg-off-white rounded-xl p-8">
         <h3 class="text-2xl text-navy mb-6 font-heading uppercase tracking-wide">Weekly Services</h3>
         <div class="space-y-4">
-          <?php foreach ($services as $service): ?>
+          <?php
+          // Show all church services on homepage (services only, at The Church)
+          $main_services = array_filter($recurring, fn($s) =>
+            ($s['active'] ?? true) &&
+            ($s['type'] ?? 'service') === 'service' &&
+            $s['location_id'] === 'temple'
+          );
+          // Sort by day of week then time
+          usort($main_services, function($a, $b) {
+            if ($a['day_of_week'] !== $b['day_of_week']) {
+              // Put Sunday (0) last, so order is Wed, Thu, Sat, Sun
+              $a_day = $a['day_of_week'] === 0 ? 7 : $a['day_of_week'];
+              $b_day = $b['day_of_week'] === 0 ? 7 : $b['day_of_week'];
+              return $a_day - $b_day;
+            }
+            return strcmp($a['time'], $b['time']);
+          });
+          foreach ($main_services as $service):
+          ?>
           <div class="flex justify-between items-center pb-4 border-b border-charcoal/10 last:border-0">
             <div>
-              <p class="font-semibold text-charcoal"><?= e($service['day']) ?></p>
+              <p class="font-semibold text-charcoal"><?= e(get_day_name($service['day_of_week'])) ?></p>
               <p class="text-sm text-slate"><?= e($service['name']) ?></p>
             </div>
-            <span class="font-heading text-navy"><?= e($service['time']) ?></span>
+            <span class="font-heading text-navy"><?= e(format_time($service['time'])) ?></span>
           </div>
           <?php endforeach; ?>
         </div>
+        <a href="/services" class="text-gold text-sm hover:underline mt-4 inline-block">View full schedule</a>
       </div>
 
       <!-- Location with Map -->
@@ -111,43 +132,51 @@ require_once 'includes/header.php';
   </div>
 </section>
 
+<?php if (!empty($upcoming_events)): ?>
 <!-- Upcoming Events Section -->
 <section class="py-20 bg-off-white">
   <div class="max-w-7xl mx-auto px-6">
     <div class="section-header">
-      <h2>Upcoming Events</h2>
+      <h2 class="text-navy">Upcoming Events</h2>
       <div class="section-divider"></div>
       <p class="text-slate max-w-xl mx-auto">
         Special services, feast days, and community gatherings
       </p>
     </div>
 
-    <?php if (!empty($upcoming_events)): ?>
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      <?php foreach ($upcoming_events as $event):
-        $date = strtotime($event['date']);
+      <?php
         $months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
         $weekdays = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+        $colors = ['bg-burgundy', 'bg-navy', 'bg-burgundy'];
+        foreach ($upcoming_events as $index => $event):
+        $date = strtotime($event['date']);
+        $loc = get_location($event['location_id']);
+        $bg_color = $colors[$index % count($colors)];
       ?>
       <div class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
-        <div class="bg-navy text-white p-4 text-center">
+        <div class="<?= $bg_color ?> text-white p-4 text-center">
           <span class="block text-gold font-heading uppercase text-sm tracking-wide"><?= $months[date('n', $date) - 1] ?></span>
           <span class="block text-4xl font-heading"><?= date('d', $date) ?></span>
           <span class="block text-white/60 text-sm"><?= $weekdays[date('w', $date)] ?></span>
         </div>
         <div class="p-6">
-          <h3 class="font-heading uppercase tracking-wide text-lg text-navy mb-2"><?= e($event['title']) ?></h3>
-          <p class="text-gold text-sm font-medium mb-3"><?= e($event['time']) ?></p>
+          <h3 class="font-heading uppercase tracking-wide text-lg text-navy mb-2"><?= e($event['name']) ?></h3>
+          <p class="text-gold text-sm font-medium mb-1"><?= e(format_time($event['time'])) ?></p>
+          <p class="text-slate text-xs mb-3"><?= e($loc['short'] ?? '') ?></p>
+          <?php if (!empty($event['description'])): ?>
           <p class="text-slate text-sm"><?= e($event['description']) ?></p>
+          <?php endif; ?>
         </div>
       </div>
       <?php endforeach; ?>
     </div>
-    <?php else: ?>
-    <p class="text-center text-slate">No upcoming events at this time.</p>
-    <?php endif; ?>
+    <div class="text-center mt-8">
+      <a href="/calendar" class="btn btn-secondary">View Full Calendar</a>
+    </div>
   </div>
 </section>
+<?php endif; ?>
 
 <!-- Welcome Section -->
 <section class="py-20 bg-white">
@@ -167,8 +196,8 @@ require_once 'includes/header.php';
           the Christian faith.
         </p>
         <div class="flex flex-wrap gap-4">
-          <a href="/discover.php" class="btn btn-primary">Discover Orthodoxy</a>
-          <a href="/visit.php" class="btn btn-secondary">What to Expect</a>
+          <a href="/discover" class="btn btn-primary">Discover Orthodoxy</a>
+          <a href="/visit" class="btn btn-secondary">What to Expect</a>
         </div>
       </div>
 
@@ -216,9 +245,9 @@ require_once 'includes/header.php';
           <?= e($featured_news['title']) ?>
         </h3>
         <p class="text-white/80 mb-6">
-          <?= e($featured_news['excerpt']) ?>
+          <?= e(truncate_text($featured_news['body'] ?? '', 200)) ?>
         </p>
-        <a href="/news.php" class="btn btn-secondary border-white text-white hover:bg-white/10">
+        <a href="/news" class="btn btn-secondary border-white text-white hover:bg-white/10">
           Read More
         </a>
       </div>

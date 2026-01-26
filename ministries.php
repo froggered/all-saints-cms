@@ -97,7 +97,7 @@ $ministries = [
         If you'd like to participate in any of our ministries or learn more about
         how you can serve, please speak with Fr. Philip or contact us.
       </p>
-      <a href="/contact.php" class="btn btn-primary">
+      <a href="/contact" class="btn btn-primary">
         Contact Us
       </a>
     </div>

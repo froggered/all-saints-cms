@@ -21,11 +21,11 @@
         <div>
           <h4 class="font-heading text-sm uppercase tracking-wide text-gold mb-4">Quick Links</h4>
           <ul class="space-y-2 text-sm">
-            <li><a href="/about.php" class="text-white/70 hover:text-gold transition-colors">About Us</a></li>
-            <li><a href="/discover.php" class="text-white/70 hover:text-gold transition-colors">Discover Orthodoxy</a></li>
-            <li><a href="/services.php" class="text-white/70 hover:text-gold transition-colors">Service Times</a></li>
-            <li><a href="/news.php" class="text-white/70 hover:text-gold transition-colors">News & Updates</a></li>
-            <li><a href="/contact.php" class="text-white/70 hover:text-gold transition-colors">Contact</a></li>
+            <li><a href="/about" class="text-white/70 hover:text-gold transition-colors">About Us</a></li>
+            <li><a href="/discover" class="text-white/70 hover:text-gold transition-colors">Discover Orthodoxy</a></li>
+            <li><a href="/services" class="text-white/70 hover:text-gold transition-colors">Service Times</a></li>
+            <li><a href="/news" class="text-white/70 hover:text-gold transition-colors">News & Updates</a></li>
+            <li><a href="/contact" class="text-white/70 hover:text-gold transition-colors">Contact</a></li>
           </ul>
         </div>
 

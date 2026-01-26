@@ -10,9 +10,9 @@ if (isset($_GET['logout'])) {
 }
 
 $news_count = count(load_data('news'));
-$events_count = count(load_data('events'));
+$recurring_count = count(load_data('recurring_services'));
+$calendar_events_count = count(load_data('calendar_events'));
 $clergy_count = count(load_data('clergy'));
-$services_count = count(load_data('services'));
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,6 +20,7 @@ $services_count = count(load_data('services'));
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dashboard | All Saints Admin</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -33,7 +34,7 @@ $services_count = count(load_data('services'));
       justify-content: space-between;
       align-items: center;
     }
-    .header h1 {
+    .header-logo {
       font-family: 'Oswald', sans-serif;
       font-size: 1.25rem;
       text-transform: uppercase;
@@ -41,8 +42,13 @@ $services_count = count(load_data('services'));
       display: flex;
       align-items: center;
       gap: 10px;
+      color: white;
+      text-decoration: none;
+      background: none;
+      padding: 0;
     }
-    .header h1 span { color: #c9a227; }
+    .header-logo:hover { color: white; background: none; }
+    .header-logo span { color: #c9a227; }
     .header a {
       color: white;
       text-decoration: none;
@@ -152,7 +158,7 @@ $services_count = count(load_data('services'));
 </head>
 <body>
   <header class="header">
-    <h1><span>&#9766;</span> All Saints Admin</h1>
+    <a href="/admin/dashboard.php" class="header-logo"><span>&#9766;</span> All Saints Admin</a>
     <a href="?logout=1">Sign Out</a>
   </header>
 
@@ -170,11 +176,18 @@ $services_count = count(load_data('services'));
         <span class="count"><?= $news_count ?> items</span>
       </a>
 
-      <a href="/admin/events.php" class="card">
+      <a href="/admin/calendar.php" class="card">
         <div class="icon">📅</div>
-        <h3>Events</h3>
-        <p>Manage upcoming events and feast days</p>
-        <span class="count"><?= $events_count ?> items</span>
+        <h3>Calendar</h3>
+        <p>View and manage calendar events</p>
+        <span class="count"><?= $calendar_events_count ?> special events</span>
+      </a>
+
+      <a href="/admin/recurring.php" class="card">
+        <div class="icon">🕯️</div>
+        <h3>Recurring Services</h3>
+        <p>Manage weekly service templates</p>
+        <span class="count"><?= $recurring_count ?> services</span>
       </a>
 
       <a href="/admin/clergy.php" class="card">
@@ -182,13 +195,6 @@ $services_count = count(load_data('services'));
         <h3>Clergy</h3>
         <p>Manage clergy profiles</p>
         <span class="count"><?= $clergy_count ?> profiles</span>
-      </a>
-
-      <a href="/admin/services.php" class="card">
-        <div class="icon">🕯️</div>
-        <h3>Service Schedule</h3>
-        <p>Update weekly service times</p>
-        <span class="count"><?= $services_count ?> services</span>
       </a>
     </div>
 

@@ -16,12 +16,12 @@ require_once 'includes/header.php';
 <section class="py-20 bg-white">
   <div class="max-w-4xl mx-auto px-6">
     <div class="grid sm:grid-cols-2 gap-6 mb-16">
-      <a href="/visit.php" class="block p-8 bg-off-white rounded-xl border border-black/5 hover:shadow-lg hover:-translate-y-1 transition-all duration-200">
+      <a href="/visit" class="block p-8 bg-off-white rounded-xl border border-black/5 hover:shadow-lg hover:-translate-y-1 transition-all duration-200">
         <h3 class="font-heading text-2xl uppercase tracking-wide text-navy mb-3">Plan Your Visit</h3>
         <p class="text-slate">What to expect when visiting an Orthodox church for the first time.</p>
         <span class="inline-block mt-4 text-gold font-heading text-sm uppercase tracking-wide">Learn More →</span>
       </a>
-      <a href="/about.php" class="block p-8 bg-off-white rounded-xl border border-black/5 hover:shadow-lg hover:-translate-y-1 transition-all duration-200">
+      <a href="/about" class="block p-8 bg-off-white rounded-xl border border-black/5 hover:shadow-lg hover:-translate-y-1 transition-all duration-200">
         <h3 class="font-heading text-2xl uppercase tracking-wide text-navy mb-3">About Our Parish</h3>
         <p class="text-slate">Learn about All Saints of Lincolnshire and our community.</p>
         <span class="inline-block mt-4 text-gold font-heading text-sm uppercase tracking-wide">Learn More →</span>
@@ -58,7 +58,7 @@ require_once 'includes/header.php';
           These classes cover the history, theology, and spiritual practices of the Orthodox Church.
         </p>
         <p class="text-charcoal">
-          Please <a href="/contact.php" class="text-gold hover:underline">contact Fr. Philip</a> to learn more about becoming a catechumen.
+          Please <a href="/contact" class="text-gold hover:underline">contact Fr. Philip</a> to learn more about becoming a catechumen.
         </p>
       </div>
     </div>

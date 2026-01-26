@@ -2,6 +2,10 @@
 $page_title = $page_title ?? 'Home';
 $page_description = $page_description ?? 'Orthodox Christian Parish in Lincoln, UK. Part of the Antiochian Archdiocese.';
 $site_title = $page_title . ' | All Saints of Lincolnshire';
+$header_settings = get_settings();
+$is_live = is_youtube_live();
+$youtube_url = $header_settings['youtube'] ?? '#';
+$youtube_live_url = !empty($youtube_url) ? rtrim($youtube_url, '/') . '/live' : '#';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -101,7 +105,6 @@ $site_title = $page_title . ' | All Saints of Lincolnshire';
     }
     .section-header h2 {
       font-size: 2.25rem;
-      color: #1a1f3c;
       margin-bottom: 0.5rem;
     }
     .section-divider {
@@ -123,20 +126,27 @@ $site_title = $page_title . ' | All Saints of Lincolnshire';
 
       <!-- Desktop Navigation -->
       <ul class="hidden md:flex gap-8">
-        <li><a href="/about.php" class="text-white/85 font-heading text-sm uppercase tracking-wide hover:text-gold transition-colors">About</a></li>
-        <li><a href="/discover.php" class="text-white/85 font-heading text-sm uppercase tracking-wide hover:text-gold transition-colors">Discover</a></li>
-        <li><a href="/services.php" class="text-white/85 font-heading text-sm uppercase tracking-wide hover:text-gold transition-colors">Services</a></li>
-        <li><a href="/news.php" class="text-white/85 font-heading text-sm uppercase tracking-wide hover:text-gold transition-colors">News</a></li>
-        <li><a href="/support.php" class="text-white/85 font-heading text-sm uppercase tracking-wide hover:text-gold transition-colors">Support</a></li>
-        <li><a href="/contact.php" class="text-white/85 font-heading text-sm uppercase tracking-wide hover:text-gold transition-colors">Contact</a></li>
+        <li><a href="/about" class="text-white/85 font-heading text-sm uppercase tracking-wide hover:text-gold transition-colors">About</a></li>
+        <li><a href="/discover" class="text-white/85 font-heading text-sm uppercase tracking-wide hover:text-gold transition-colors">Discover</a></li>
+        <li><a href="/services" class="text-white/85 font-heading text-sm uppercase tracking-wide hover:text-gold transition-colors">Services</a></li>
+        <li><a href="/news" class="text-white/85 font-heading text-sm uppercase tracking-wide hover:text-gold transition-colors">News</a></li>
+        <li><a href="/support" class="text-white/85 font-heading text-sm uppercase tracking-wide hover:text-gold transition-colors">Support</a></li>
+        <li><a href="/contact" class="text-white/85 font-heading text-sm uppercase tracking-wide hover:text-gold transition-colors">Contact</a></li>
       </ul>
 
       <div class="flex items-center gap-4">
-        <!-- Live Button -->
-        <a href="#" class="hidden sm:flex btn btn-live gap-2 py-2 px-4 text-xs">
+        <!-- Live/Watch Button -->
+        <?php if ($is_live): ?>
+        <a href="<?= e($youtube_live_url) ?>" target="_blank" rel="noopener" class="hidden sm:flex btn btn-live gap-2 py-2 px-4 text-xs">
           <span class="w-2 h-2 bg-white rounded-full animate-pulse"></span>
           Live
         </a>
+        <?php else: ?>
+        <a href="<?= e($youtube_url) ?>" target="_blank" rel="noopener" class="hidden sm:flex btn btn-secondary gap-2 py-2 px-4 text-xs">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          Watch
+        </a>
+        <?php endif; ?>
 
         <!-- Mobile Menu Button -->
         <button id="mobile-menu-btn" class="md:hidden text-white p-2" aria-label="Toggle menu">
@@ -150,12 +160,12 @@ $site_title = $page_title . ' | All Saints of Lincolnshire';
     <!-- Mobile Navigation -->
     <div id="mobile-menu" class="hidden md:hidden bg-navy border-t border-white/10">
       <ul class="px-6 py-4 space-y-4">
-        <li><a href="/about.php" class="block text-white/85 font-heading text-sm uppercase tracking-wide hover:text-gold transition-colors">About</a></li>
-        <li><a href="/discover.php" class="block text-white/85 font-heading text-sm uppercase tracking-wide hover:text-gold transition-colors">Discover</a></li>
-        <li><a href="/services.php" class="block text-white/85 font-heading text-sm uppercase tracking-wide hover:text-gold transition-colors">Services</a></li>
-        <li><a href="/news.php" class="block text-white/85 font-heading text-sm uppercase tracking-wide hover:text-gold transition-colors">News</a></li>
-        <li><a href="/support.php" class="block text-white/85 font-heading text-sm uppercase tracking-wide hover:text-gold transition-colors">Support</a></li>
-        <li><a href="/contact.php" class="block text-white/85 font-heading text-sm uppercase tracking-wide hover:text-gold transition-colors">Contact</a></li>
+        <li><a href="/about" class="block text-white/85 font-heading text-sm uppercase tracking-wide hover:text-gold transition-colors">About</a></li>
+        <li><a href="/discover" class="block text-white/85 font-heading text-sm uppercase tracking-wide hover:text-gold transition-colors">Discover</a></li>
+        <li><a href="/services" class="block text-white/85 font-heading text-sm uppercase tracking-wide hover:text-gold transition-colors">Services</a></li>
+        <li><a href="/news" class="block text-white/85 font-heading text-sm uppercase tracking-wide hover:text-gold transition-colors">News</a></li>
+        <li><a href="/support" class="block text-white/85 font-heading text-sm uppercase tracking-wide hover:text-gold transition-colors">Support</a></li>
+        <li><a href="/contact" class="block text-white/85 font-heading text-sm uppercase tracking-wide hover:text-gold transition-colors">Contact</a></li>
       </ul>
     </div>
   </nav>

@@ -75,13 +75,18 @@ usort($clergy, fn($a, $b) => ($a['order'] ?? 99) - ($b['order'] ?? 99));
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Clergy | All Saints Admin</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: 'Inter', sans-serif; background: #f5f5f5; min-height: 100vh; }
     .header { background: #1a1f3c; color: white; padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; }
-    .header h1 { font-family: 'Oswald', sans-serif; font-size: 1.25rem; text-transform: uppercase; }
+    .header-logo { font-family: 'Oswald', sans-serif; font-size: 1.25rem; text-transform: uppercase; letter-spacing: 0.05em; display: flex; align-items: center; gap: 10px; color: white; text-decoration: none; }
+    .header-logo:hover { color: white; }
+    .header-logo span { color: #c9a227; }
+    .header nav { display: flex; gap: 12px; }
     .header a { color: white; text-decoration: none; padding: 8px 16px; background: rgba(255,255,255,0.1); border-radius: 6px; }
+    .header a:hover { background: rgba(255,255,255,0.2); }
     .container { max-width: 900px; margin: 0 auto; padding: 24px; }
     .btn { padding: 10px 20px; background: #1a1f3c; color: white; border: none; border-radius: 6px; font-family: 'Oswald', sans-serif; text-transform: uppercase; cursor: pointer; text-decoration: none; font-size: 0.9rem; }
     .btn:hover { background: #2d2d4a; }
@@ -120,8 +125,11 @@ usort($clergy, fn($a, $b) => ($a['order'] ?? 99) - ($b['order'] ?? 99));
 </head>
 <body>
   <header class="header">
-    <h1>Clergy</h1>
-    <a href="/admin/dashboard.php">← Back to Dashboard</a>
+    <a href="/admin/dashboard.php" class="header-logo"><span>&#9766;</span> All Saints Admin</a>
+    <nav>
+      <a href="/admin/dashboard.php">Dashboard</a>
+      <a href="/" target="_blank">View Site</a>
+    </nav>
   </header>
 
   <div class="container">

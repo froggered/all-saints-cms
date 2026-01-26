@@ -1,0 +1,20 @@
+[
+  {
+    "id": "temple",
+    "name": "The Church",
+    "short": "The Church",
+    "address": "Burton Road, Lincoln LN1 3TX"
+  },
+  {
+    "id": "jasmin",
+    "name": "The Monastery",
+    "short": "The Monastery",
+    "address": "78 Jasmin Road, Lincoln LN6 0YR"
+  },
+  {
+    "id": "other",
+    "name": "Other Location",
+    "short": "Other",
+    "address": ""
+  }
+]

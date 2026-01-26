@@ -2,7 +2,20 @@
 require_once 'includes/functions.php';
 $page_title = 'Plan Your Visit';
 $settings = get_settings();
-$services = get_services();
+$recurring = get_recurring_services();
+// Filter to show only active church services
+$services = array_filter($recurring, fn($s) =>
+    ($s['active'] ?? true) &&
+    ($s['type'] ?? 'service') === 'service' &&
+    $s['location_id'] === 'temple'
+);
+// Sort by day then time
+usort($services, function($a, $b) {
+    $a_day = $a['day_of_week'] === 0 ? 7 : $a['day_of_week'];
+    $b_day = $b['day_of_week'] === 0 ? 7 : $b['day_of_week'];
+    if ($a_day !== $b_day) return $a_day - $b_day;
+    return strcmp($a['time'], $b['time']);
+});
 require_once 'includes/header.php';
 ?>
 
@@ -34,10 +47,10 @@ require_once 'includes/header.php';
           <?php foreach ($services as $service): ?>
           <div class="flex justify-between">
             <div>
-              <span class="text-charcoal font-semibold"><?= e($service['day']) ?></span>
+              <span class="text-charcoal font-semibold"><?= e(get_day_name($service['day_of_week'])) ?></span>
               <span class="text-slate text-sm ml-2"><?= e($service['name']) ?></span>
             </div>
-            <span class="font-semibold"><?= e($service['time']) ?></span>
+            <span class="font-semibold"><?= e(format_time($service['time'])) ?></span>
           </div>
           <?php endforeach; ?>
         </div>
@@ -72,7 +85,7 @@ require_once 'includes/header.php';
 
       <h2 class="text-2xl text-navy mt-12 mb-6 font-heading uppercase tracking-wide">Questions?</h2>
       <p class="text-charcoal">
-        If you have any questions before your visit, please don't hesitate to <a href="/contact.php" class="text-gold hover:underline">contact Fr. Philip</a>.
+        If you have any questions before your visit, please don't hesitate to <a href="/contact" class="text-gold hover:underline">contact Fr. Philip</a>.
         We look forward to welcoming you!
       </p>
     </div>
