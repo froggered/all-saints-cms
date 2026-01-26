@@ -1,3 +1,7 @@
+# Admin config - contains password
+# (copy admin/config.sample.php to admin/config.php)
+admin/config.php
+
 # Data files - managed via admin, not git
 # (see data/samples/ for templates)
 data/*.json
