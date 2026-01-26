@@ -8,8 +8,30 @@ $settings = get_settings();
 $message = '';
 $error = '';
 
+// Handle password change
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['change_password'])) {
+    $new_password = $_POST['new_password'] ?? '';
+    $confirm_password = $_POST['confirm_password'] ?? '';
+
+    if (strlen($new_password) < 8) {
+        $error = 'Password must be at least 8 characters.';
+    } elseif ($new_password !== $confirm_password) {
+        $error = 'Passwords do not match.';
+    } else {
+        // Update config.php
+        $config_path = __DIR__ . '/config.php';
+        $config_content = "<?php\n/**\n * Admin Configuration\n */\n\ndefine('ADMIN_PASSWORD', " . var_export($new_password, true) . ");\ndefine('SESSION_NAME', 'allsaints_admin');\n";
+
+        if (file_put_contents($config_path, $config_content)) {
+            $message = 'Password changed successfully.';
+        } else {
+            $error = 'Failed to update password. Check file permissions.';
+        }
+    }
+}
+
 // Handle form submission
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && !isset($_POST['change_password'])) {
     $settings['churchName'] = trim($_POST['churchName'] ?? '');
     $settings['email'] = trim($_POST['email'] ?? '');
     $settings['phone'] = trim($_POST['phone'] ?? '');
@@ -269,6 +291,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       </div>
 
       <button type="submit" class="btn btn-primary">Save Settings</button>
+    </form>
+
+    <form method="POST" style="margin-top: 24px;">
+      <div class="card">
+        <h2>Change Admin Password</h2>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="new_password">New Password</label>
+            <input type="password" id="new_password" name="new_password" required minlength="8">
+            <p class="hint">Minimum 8 characters</p>
+          </div>
+          <div class="form-group">
+            <label for="confirm_password">Confirm Password</label>
+            <input type="password" id="confirm_password" name="confirm_password" required>
+          </div>
+        </div>
+        <button type="submit" name="change_password" value="1" class="btn btn-primary">Change Password</button>
+      </div>
     </form>
   </div>
 </body>

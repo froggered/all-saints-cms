@@ -37,6 +37,14 @@ if (file_exists($phpFile)) {
     exit;
 }
 
+// Try directory index (e.g., /admin -> /admin/index.php)
+$indexFile = __DIR__ . $path . '/index.php';
+if (file_exists($indexFile)) {
+    chdir(__DIR__);
+    require $indexFile;
+    exit;
+}
+
 // 404 - file not found
 http_response_code(404);
 echo "<!DOCTYPE html><html><head><title>404 Not Found</title></head><body><h1>404 Not Found</h1><p>The page '$path' was not found.</p></body></html>";
