@@ -249,7 +249,7 @@ require_once 'includes/header.php';
         <p class="text-white/80 mb-6">
           <?= e(truncate_text($featured_news['body'] ?? '', 200)) ?>
         </p>
-        <a href="/news" class="btn btn-secondary border-white text-white hover:bg-white/10">
+        <a href="/article?slug=<?= e($featured_news['slug']) ?>" class="btn btn-secondary border-white text-white hover:bg-white/10">
           Read More
         </a>
       </div>
@@ -260,10 +260,10 @@ require_once 'includes/header.php';
         <h4 class="font-heading text-sm uppercase tracking-wide text-gold mb-6">Recent Posts</h4>
         <div class="space-y-4">
           <?php foreach (array_slice($recent_news, 0, 4) as $post): ?>
-          <div class="pb-4 border-b border-white/10 last:border-0">
+          <a href="/article?slug=<?= e($post['slug']) ?>" class="block pb-4 border-b border-white/10 last:border-0 hover:text-gold transition-colors">
             <h5 class="font-heading text-sm uppercase tracking-wide mb-1"><?= e($post['title']) ?></h5>
             <span class="text-xs text-white/50"><?= format_date($post['date']) ?></span>
-          </div>
+          </a>
           <?php endforeach; ?>
         </div>
       </div>
