@@ -374,3 +374,71 @@ function truncate_text($text, $max_chars = 150) {
     }
     return $truncated . '...';
 }
+
+// Convert image to WebP format
+function convert_to_webp($source_path, $quality = 80) {
+    if (!function_exists('imagewebp')) {
+        return false; // GD WebP support not available
+    }
+
+    $ext = strtolower(pathinfo($source_path, PATHINFO_EXTENSION));
+    $webp_path = preg_replace('/\.(jpg|jpeg|png|gif)$/i', '.webp', $source_path);
+
+    // Create image resource based on type
+    switch ($ext) {
+        case 'jpg':
+        case 'jpeg':
+            $image = @imagecreatefromjpeg($source_path);
+            break;
+        case 'png':
+            $image = @imagecreatefrompng($source_path);
+            // Preserve transparency
+            if ($image) {
+                imagepalettetotruecolor($image);
+                imagealphablending($image, true);
+                imagesavealpha($image, true);
+            }
+            break;
+        case 'gif':
+            $image = @imagecreatefromgif($source_path);
+            break;
+        default:
+            return false;
+    }
+
+    if (!$image) {
+        return false;
+    }
+
+    // Convert to WebP
+    $result = imagewebp($image, $webp_path, $quality);
+    imagedestroy($image);
+
+    return $result ? $webp_path : false;
+}
+
+// Get WebP path for an image (returns original if WebP doesn't exist)
+function get_webp_path($original_path) {
+    $webp_path = preg_replace('/\.(jpg|jpeg|png|gif)$/i', '.webp', $original_path);
+    $full_webp_path = $_SERVER['DOCUMENT_ROOT'] . $webp_path;
+
+    if (file_exists($full_webp_path)) {
+        return $webp_path;
+    }
+    return null;
+}
+
+// Output picture element with WebP support
+function picture_element($src, $alt = '', $class = '', $loading = 'lazy') {
+    $webp_src = get_webp_path($src);
+    $loading_attr = $loading ? ' loading="' . e($loading) . '"' : '';
+
+    if ($webp_src) {
+        return '<picture>
+            <source srcset="' . e($webp_src) . '" type="image/webp">
+            <img src="' . e($src) . '" alt="' . e($alt) . '" class="' . e($class) . '"' . $loading_attr . '>
+        </picture>';
+    }
+
+    return '<img src="' . e($src) . '" alt="' . e($alt) . '" class="' . e($class) . '"' . $loading_attr . '>';
+}

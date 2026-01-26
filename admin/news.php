@@ -90,13 +90,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             if (file_exists($old_path)) {
                                 unlink($old_path);
                             }
+                            // Also delete old WebP version
+                            $old_webp = preg_replace('/\.(jpg|jpeg|png|gif)$/i', '.webp', $old_path);
+                            if (file_exists($old_webp)) {
+                                unlink($old_webp);
+                            }
                         }
+                        // Convert to WebP
+                        $webp_path = convert_to_webp($filepath);
                         $item['image'] = [
                             'filename' => $filename,
                             'original_name' => $file['name'],
                             'path' => '/uploads/news-images/' . $filename,
                             'type' => $ext,
-                            'size' => $file['size']
+                            'size' => $file['size'],
+                            'webp' => $webp_path ? '/uploads/news-images/' . basename($webp_path) : null
                         ];
                     } else {
                         $error = 'Failed to upload image.';
@@ -144,12 +152,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         $filepath = $upload_dir . $filename;
 
                         if (move_uploaded_file($_FILES['gallery']['tmp_name'][$key], $filepath)) {
+                            // Convert to WebP
+                            $webp_path = convert_to_webp($filepath);
                             $item['gallery'][] = [
                                 'filename' => $filename,
                                 'original_name' => $name,
                                 'path' => '/uploads/gallery/' . $filename,
                                 'type' => $ext,
-                                'size' => $_FILES['gallery']['size'][$key]
+                                'size' => $_FILES['gallery']['size'][$key],
+                                'webp' => $webp_path ? '/uploads/gallery/' . basename($webp_path) : null
                             ];
                         }
                     }
@@ -166,6 +177,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $filepath = __DIR__ . '/..' . $img['path'];
                     if (file_exists($filepath)) {
                         unlink($filepath);
+                    }
+                    // Also delete WebP version
+                    if (!empty($img['webp'])) {
+                        $webp_filepath = __DIR__ . '/..' . $img['webp'];
+                        if (file_exists($webp_filepath)) {
+                            unlink($webp_filepath);
+                        }
                     }
                 } else {
                     $new_gallery[] = $img;

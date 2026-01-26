@@ -57,7 +57,12 @@ require_once 'includes/header.php';
 <!-- Header Image -->
 <?php if (!empty($article['image'])): ?>
 <div class="max-w-5xl mx-auto px-6 -mt-8">
-  <img src="<?= e($article['image']['path']) ?>" alt="<?= e($article['title']) ?>" class="w-full h-64 md:h-96 object-cover rounded-xl shadow-lg">
+  <picture>
+    <?php if (!empty($article['image']['webp'])): ?>
+    <source srcset="<?= e($article['image']['webp']) ?>" type="image/webp">
+    <?php endif; ?>
+    <img src="<?= e($article['image']['path']) ?>" alt="<?= e($article['title']) ?>" class="w-full h-64 md:h-96 object-cover rounded-xl shadow-lg" loading="lazy">
+  </picture>
 </div>
 <?php endif; ?>
 
@@ -91,7 +96,12 @@ require_once 'includes/header.php';
       <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
         <?php foreach ($article['gallery'] as $index => $img): ?>
         <button type="button" onclick="openLightbox(<?= $index ?>)" class="block group text-left">
-          <img src="<?= e($img['path']) ?>" alt="" class="w-full h-40 object-cover rounded-lg shadow-md group-hover:shadow-xl transition-shadow cursor-pointer">
+          <picture>
+            <?php if (!empty($img['webp'])): ?>
+            <source srcset="<?= e($img['webp']) ?>" type="image/webp">
+            <?php endif; ?>
+            <img src="<?= e($img['path']) ?>" alt="" class="w-full h-40 object-cover rounded-lg shadow-md group-hover:shadow-xl transition-shadow cursor-pointer" loading="lazy">
+          </picture>
         </button>
         <?php endforeach; ?>
       </div>
@@ -109,7 +119,10 @@ require_once 'includes/header.php';
     </div>
 
     <script>
-      const galleryImages = <?= json_encode(array_map(fn($img) => $img['path'], $article['gallery'])) ?>;
+      const galleryImages = <?= json_encode(array_map(fn($img) => [
+          'src' => $img['path'],
+          'webp' => $img['webp'] ?? null
+      ], $article['gallery'])) ?>;
       let currentIndex = 0;
 
       function openLightbox(index) {
@@ -140,7 +153,10 @@ require_once 'includes/header.php';
       }
 
       function updateLightbox() {
-        document.getElementById('lightbox-img').src = galleryImages[currentIndex];
+        const img = galleryImages[currentIndex];
+        // Use WebP if available and browser supports it
+        const src = (img.webp && document.createElement('canvas').toDataURL('image/webp').indexOf('data:image/webp') === 0) ? img.webp : img.src;
+        document.getElementById('lightbox-img').src = src;
         document.getElementById('lightbox-counter').textContent = (currentIndex + 1) + ' / ' + galleryImages.length;
       }
 

@@ -24,7 +24,12 @@ require_once 'includes/header.php';
         <article class="bg-off-white rounded-xl border border-black/5 hover:shadow-lg transition-shadow overflow-hidden">
           <a href="/article.php?slug=<?= e($post['slug']) ?>" class="block">
             <?php if (!empty($post['image'])): ?>
-            <img src="<?= e($post['image']['path']) ?>" alt="<?= e($post['title']) ?>" class="w-full h-48 object-cover">
+            <picture>
+              <?php if (!empty($post['image']['webp'])): ?>
+              <source srcset="<?= e($post['image']['webp']) ?>" type="image/webp">
+              <?php endif; ?>
+              <img src="<?= e($post['image']['path']) ?>" alt="<?= e($post['title']) ?>" class="w-full h-48 object-cover" loading="lazy">
+            </picture>
             <?php endif; ?>
             <div class="p-6">
               <div class="flex items-center gap-3 mb-3 flex-wrap">

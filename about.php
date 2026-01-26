@@ -49,7 +49,7 @@ $sections = [
       <?php foreach ($clergy as $index => $person): ?>
       <div class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow cursor-pointer" onclick="openClergyModal(<?= $index ?>)">
         <div class="aspect-[4/3] bg-navy/10">
-          <img src="<?= e($person['photo']) ?>" alt="<?= e($person['title']) ?>" class="w-full h-full object-cover" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 300%22><rect fill=%22%231a1f3c%22 width=%22400%22 height=%22300%22/><text x=%22200%22 y=%22150%22 fill=%22%23c9a227%22 font-size=%2280%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22>☦</text></svg>'">
+          <img src="<?= e($person['photo']) ?>" alt="<?= e($person['title']) ?>" class="w-full h-full object-cover" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 300%22><rect fill=%22%231a1f3c%22 width=%22400%22 height=%22300%22/><text x=%22200%22 y=%22150%22 fill=%22%23c9a227%22 font-size=%2280%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22>☦</text></svg>'">
         </div>
         <div class="p-6">
           <h3 class="font-heading text-xl uppercase tracking-wide text-navy mb-1"><?= e($person['title']) ?></h3>

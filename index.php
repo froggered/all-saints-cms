@@ -207,11 +207,13 @@ require_once 'includes/header.php';
             src="/images/church_exterior.jpg"
             alt="Saint Matthias Church Centre exterior"
             class="w-full rounded-xl aspect-[3/4] object-cover shadow-lg"
+            loading="lazy"
           />
           <img
             src="/images/allsaints_icon.jpg"
             alt="All Saints Orthodox Icon"
             class="w-full rounded-xl aspect-[3/4] object-cover shadow-lg"
+            loading="lazy"
           />
         </div>
         <div class="absolute -bottom-6 -right-6 bg-gold text-navy p-6 rounded-lg shadow-xl max-w-xs">
