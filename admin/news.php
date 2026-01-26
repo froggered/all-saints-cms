@@ -727,7 +727,7 @@ usort($news, fn($a, $b) => strtotime($b['date'] ?? 0) - strtotime($a['date'] ?? 
         <div class="form-group">
           <label class="checkbox-group">
             <input type="checkbox" name="featured" <?= ($editing['featured'] ?? false) ? 'checked' : '' ?>>
-            Featured post
+            Newsletter (unchecked = News)
           </label>
         </div>
 
@@ -758,7 +758,7 @@ usort($news, fn($a, $b) => strtotime($b['date'] ?? 0) - strtotime($a['date'] ?? 
             <h3>
               <?= e($item['title']) ?>
               <?php if ($item['featured'] ?? false): ?>
-              <span class="badge">Featured</span>
+              <span class="badge">Newsletter</span>
               <?php endif; ?>
               <?php if (!empty($item['image'])): ?>
               <span class="image-badge">🖼️ Header</span>
