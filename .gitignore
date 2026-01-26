@@ -1,0 +1,26 @@
+# Data files - managed via admin, not git
+# (see data/samples/ for templates)
+data/*.json
+!data/samples/*.json
+
+# Uploaded files
+uploads/gallery/*
+uploads/news-images/*
+uploads/newsletters/*
+
+# Keep the upload directories
+!uploads/gallery/.gitkeep
+!uploads/news-images/.gitkeep
+!uploads/newsletters/.gitkeep
+
+# Cache files
+data/youtube_live_cache.json
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.swp
