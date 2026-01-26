@@ -1,0 +1,14 @@
+---
+deployment:
+  tasks:
+    - /bin/cp -R admin /home/aedafdaf/public_html/
+    - /bin/cp -R includes /home/aedafdaf/public_html/
+    - /bin/cp -R images /home/aedafdaf/public_html/
+    - /bin/cp *.php /home/aedafdaf/public_html/
+    - /bin/cp .htaccess /home/aedafdaf/public_html/
+    - /bin/cp favicon.svg /home/aedafdaf/public_html/
+    - /bin/cp styles.css /home/aedafdaf/public_html/
+    - /bin/mkdir -p /home/aedafdaf/public_html/data
+    - /bin/mkdir -p /home/aedafdaf/public_html/uploads/gallery
+    - /bin/mkdir -p /home/aedafdaf/public_html/uploads/news-images
+    - /bin/mkdir -p /home/aedafdaf/public_html/uploads/newsletters
