@@ -18,9 +18,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['change_password'])) {
     } elseif ($new_password !== $confirm_password) {
         $error = 'Passwords do not match.';
     } else {
-        // Update config.php
+        // Update config.php with hashed password
         $config_path = __DIR__ . '/config.php';
-        $config_content = "<?php\n/**\n * Admin Configuration\n */\n\ndefine('ADMIN_PASSWORD', " . var_export($new_password, true) . ");\ndefine('SESSION_NAME', 'allsaints_admin');\n";
+        $password_hash = password_hash($new_password, PASSWORD_DEFAULT);
+        $config_content = "<?php\n/**\n * Admin Configuration\n */\n\n// Password hash (use password_hash() to generate new hashes)\ndefine('ADMIN_PASSWORD_HASH', " . var_export($password_hash, true) . ");\ndefine('SESSION_NAME', 'allsaints_admin');\n";
 
         if (file_put_contents($config_path, $config_content)) {
             $message = 'Password changed successfully.';

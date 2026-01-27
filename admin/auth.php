@@ -20,9 +20,10 @@ function require_login() {
 }
 
 function login($password) {
-    if ($password === ADMIN_PASSWORD) {
+    if (password_verify($password, ADMIN_PASSWORD_HASH)) {
         $_SESSION['logged_in'] = true;
         $_SESSION['login_time'] = time();
+        session_regenerate_id(true);
         return true;
     }
     return false;
