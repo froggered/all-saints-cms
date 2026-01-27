@@ -56,14 +56,13 @@ require_once 'includes/header.php';
 <section class="py-12 bg-white">
   <div class="max-w-7xl mx-auto px-6">
     <!-- Calendar Navigation -->
-    <div class="flex items-center justify-between mb-8">
-      <div class="flex gap-2">
-        <a href="?year=<?= $prev_year ?>&month=<?= $prev_month ?>" class="px-4 py-2 border-2 border-charcoal/20 rounded-lg hover:border-gold transition-colors">&larr; Previous</a>
-        <a href="?year=<?= date('Y') ?>&month=<?= date('n') ?>" class="px-4 py-2 border-2 border-charcoal/20 rounded-lg hover:border-gold transition-colors">Today</a>
-        <a href="?year=<?= $next_year ?>&month=<?= $next_month ?>" class="px-4 py-2 border-2 border-charcoal/20 rounded-lg hover:border-gold transition-colors">Next &rarr;</a>
+    <div class="mb-8">
+      <h2 class="text-3xl font-heading uppercase tracking-wide text-navy text-center mb-4"><?= $month_name ?> <?= $year ?></h2>
+      <div class="flex justify-center gap-2">
+        <a href="?year=<?= $prev_year ?>&month=<?= $prev_month ?>" class="px-3 py-2 text-sm md:px-4 md:text-base border-2 border-charcoal/20 rounded-lg hover:border-gold transition-colors">&larr; <span class="hidden sm:inline">Previous</span><span class="sm:hidden">Prev</span></a>
+        <a href="?year=<?= date('Y') ?>&month=<?= date('n') ?>" class="px-3 py-2 text-sm md:px-4 md:text-base border-2 border-charcoal/20 rounded-lg hover:border-gold transition-colors">Today</a>
+        <a href="?year=<?= $next_year ?>&month=<?= $next_month ?>" class="px-3 py-2 text-sm md:px-4 md:text-base border-2 border-charcoal/20 rounded-lg hover:border-gold transition-colors"><span class="hidden sm:inline">Next</span><span class="sm:hidden">Next</span> &rarr;</a>
       </div>
-      <h2 class="text-3xl font-heading uppercase tracking-wide text-navy"><?= $month_name ?> <?= $year ?></h2>
-      <div></div>
     </div>
 
     <div class="grid lg:grid-cols-4 gap-8">
@@ -72,8 +71,14 @@ require_once 'includes/header.php';
         <div class="bg-off-white rounded-xl overflow-hidden shadow-sm">
           <!-- Header -->
           <div class="grid grid-cols-7 bg-navy text-white">
-            <?php foreach (['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'] as $day): ?>
-              <div class="py-3 text-center font-heading uppercase text-sm tracking-wide"><?= $day ?></div>
+            <?php
+            $days_full = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+            $days_short = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
+            foreach ($days_full as $i => $day): ?>
+              <div class="py-2 md:py-3 text-center font-heading uppercase text-xs md:text-sm tracking-wide">
+                <span class="hidden sm:inline"><?= $day ?></span>
+                <span class="sm:hidden"><?= $days_short[$i] ?></span>
+              </div>
             <?php endforeach; ?>
           </div>
 
@@ -83,7 +88,7 @@ require_once 'includes/header.php';
             // Empty cells before first day
             for ($i = 0; $i < $start_weekday; $i++):
             ?>
-              <div class="min-h-[100px] border border-charcoal/5 bg-charcoal/5"></div>
+              <div class="min-h-[60px] md:min-h-[100px] border border-charcoal/5 bg-charcoal/5"></div>
             <?php endfor; ?>
 
             <?php
@@ -92,10 +97,29 @@ require_once 'includes/header.php';
               $date = sprintf('%04d-%02d-%02d', $year, $month, $day);
               $day_events = $events_by_date[$date] ?? [];
               $is_today = ($date === $today);
+
+              // Always prepare JSON for mobile tap
+              $day_events_json = [];
+              foreach ($day_events as $de) {
+                  $de_loc = get_location($de['location_id']);
+                  $day_events_json[] = [
+                      'name' => $de['name'],
+                      'time' => format_time($de['time']),
+                      'date' => date('l, j F Y', strtotime($de['date'])),
+                      'location' => $de_loc['short'] ?? '',
+                      'address' => $de_loc['address'] ?? '',
+                      'description' => $de['description'] ?? '',
+                      'is_special' => $de['is_special'] ?? false,
+                      'location_id' => $de['location_id'] ?? 'temple',
+                      'type' => $de['type'] ?? 'service'
+                  ];
+              }
             ?>
-              <div class="min-h-[100px] border border-charcoal/5 p-2 <?= $is_today ? 'bg-gold/10' : 'bg-white' ?>">
+              <div class="day-cell min-h-[60px] md:min-h-[100px] border border-charcoal/5 p-1 md:p-2 <?= $is_today ? 'bg-gold/10' : 'bg-white' ?> <?= count($day_events) > 0 ? 'cursor-pointer md:cursor-default' : '' ?>"
+                   data-date="<?= e(date('l, j F Y', strtotime($date))) ?>"
+                   data-events='<?= e(json_encode($day_events_json)) ?>'>
                 <div class="font-semibold text-sm mb-1 <?= $is_today ? 'text-gold' : 'text-charcoal' ?>"><?= $day ?></div>
-                <div class="space-y-1">
+                <div class="space-y-1 hidden md:block">
                   <?php
                   $shown = 0;
                   foreach ($day_events as $event):
@@ -113,7 +137,7 @@ require_once 'includes/header.php';
                     $loc = get_location($event['location_id']);
                   ?>
                     <button
-                      class="event-btn text-[10px] px-1 py-0.5 rounded <?= $bg_class ?> text-white truncate w-full text-left cursor-pointer hover:opacity-80"
+                      class="event-btn text-[8px] md:text-[10px] px-1 py-0.5 rounded <?= $bg_class ?> text-white truncate w-full text-left cursor-pointer hover:opacity-80"
                       data-name="<?= e($event['name']) ?>"
                       data-time="<?= e(format_time($event['time'])) ?>"
                       data-date="<?= e(date('l, j F Y', strtotime($event['date']))) ?>"
@@ -124,26 +148,24 @@ require_once 'includes/header.php';
                       <?= e(format_time($event['time'])) ?> <?= e($event['name']) ?>
                     </button>
                   <?php endforeach; ?>
-                  <?php if (count($day_events) > 3):
-                    // Encode all events for this day as JSON for the modal
-                    $day_events_json = [];
-                    foreach ($day_events as $de) {
-                        $de_loc = get_location($de['location_id']);
-                        $day_events_json[] = [
-                            'name' => $de['name'],
-                            'time' => format_time($de['time']),
-                            'date' => date('l, j F Y', strtotime($de['date'])),
-                            'location' => $de_loc['short'] ?? '',
-                            'address' => $de_loc['address'] ?? '',
-                            'description' => $de['description'] ?? '',
-                            'is_special' => $de['is_special'] ?? false,
-                            'location_id' => $de['location_id'] ?? 'temple',
-                            'type' => $de['type'] ?? 'service'
-                        ];
-                    }
-                  ?>
+                  <?php if (count($day_events) > 3): ?>
                     <button class="text-[10px] text-slate hover:text-gold more-btn" data-date="<?= e(date('l, j F Y', strtotime($date))) ?>" data-events='<?= e(json_encode($day_events_json)) ?>'>+<?= count($day_events) - 3 ?> more</button>
                   <?php endif; ?>
+                </div>
+                <!-- Mobile: show dot indicators -->
+                <div class="md:hidden flex flex-wrap gap-0.5 mt-1">
+                  <?php foreach ($day_events as $event):
+                    $dot_class = 'bg-purple-600';
+                    if ($event['is_special'] ?? false) {
+                        $dot_class = 'bg-gold';
+                    } elseif (($event['type'] ?? 'service') === 'misc') {
+                        $dot_class = 'bg-slate';
+                    } elseif (($event['location_id'] ?? 'temple') === 'jasmin') {
+                        $dot_class = 'bg-navy';
+                    }
+                  ?>
+                    <div class="w-2 h-2 rounded-full <?= $dot_class ?>"></div>
+                  <?php endforeach; ?>
                 </div>
               </div>
             <?php endfor; ?>
@@ -154,7 +176,7 @@ require_once 'includes/header.php';
             $remaining = (7 - ($total_cells % 7)) % 7;
             for ($i = 0; $i < $remaining; $i++):
             ?>
-              <div class="min-h-[100px] border border-charcoal/5 bg-charcoal/5"></div>
+              <div class="min-h-[60px] md:min-h-[100px] border border-charcoal/5 bg-charcoal/5"></div>
             <?php endfor; ?>
           </div>
         </div>
@@ -318,38 +340,56 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
+  function showDayModal(date, events) {
+    if (events.length === 0) return;
+
+    dayModalDate.textContent = date;
+    dayModalEvents.innerHTML = '';
+
+    events.forEach(event => {
+      const colorClass = getEventColor(event);
+      const div = document.createElement('div');
+      div.className = 'p-3 rounded-lg border border-charcoal/10 hover:bg-charcoal/5 cursor-pointer transition-colors';
+      div.innerHTML = `
+        <div class="flex items-center gap-3">
+          <div class="w-2 h-8 rounded ${colorClass}"></div>
+          <div class="flex-1">
+            <p class="font-semibold text-charcoal">${event.name}</p>
+            <p class="text-sm text-slate">${event.time} · ${event.location}</p>
+          </div>
+        </div>
+      `;
+      div.addEventListener('click', function() {
+        dayModal.classList.add('hidden');
+        dayModal.classList.remove('flex');
+        showEventModal(event);
+      });
+      dayModalEvents.appendChild(div);
+    });
+
+    dayModal.classList.remove('hidden');
+    dayModal.classList.add('flex');
+  }
+
+  // Mobile: tap day cell to see all events
+  document.querySelectorAll('.day-cell').forEach(cell => {
+    cell.addEventListener('click', function(e) {
+      // Only on mobile (< 768px) and not clicking an event button
+      if (window.innerWidth >= 768) return;
+      if (e.target.closest('.event-btn') || e.target.closest('.more-btn')) return;
+
+      const events = JSON.parse(this.dataset.events || '[]');
+      const date = this.dataset.date;
+      showDayModal(date, events);
+    });
+  });
+
   // Open day modal when clicking "+X more"
   document.querySelectorAll('.more-btn').forEach(btn => {
     btn.addEventListener('click', function() {
       const events = JSON.parse(this.dataset.events);
       const date = this.dataset.date;
-
-      dayModalDate.textContent = date;
-      dayModalEvents.innerHTML = '';
-
-      events.forEach(event => {
-        const colorClass = getEventColor(event);
-        const div = document.createElement('div');
-        div.className = 'p-3 rounded-lg border border-charcoal/10 hover:bg-charcoal/5 cursor-pointer transition-colors';
-        div.innerHTML = `
-          <div class="flex items-center gap-3">
-            <div class="w-2 h-8 rounded ${colorClass}"></div>
-            <div class="flex-1">
-              <p class="font-semibold text-charcoal">${event.name}</p>
-              <p class="text-sm text-slate">${event.time} · ${event.location}</p>
-            </div>
-          </div>
-        `;
-        div.addEventListener('click', function() {
-          dayModal.classList.add('hidden');
-          dayModal.classList.remove('flex');
-          showEventModal(event);
-        });
-        dayModalEvents.appendChild(div);
-      });
-
-      dayModal.classList.remove('hidden');
-      dayModal.classList.add('flex');
+      showDayModal(date, events);
     });
   });
 
