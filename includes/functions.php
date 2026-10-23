@@ -412,7 +412,7 @@ function convert_to_webp($source_path, $quality = 80) {
 
     // Convert to WebP
     $result = imagewebp($image, $webp_path, $quality);
-    imagedestroy($image);
+    unset($image); // imagedestroy() is a no-op since PHP 8.0 and deprecated in 8.5
 
     return $result ? $webp_path : false;
 }
